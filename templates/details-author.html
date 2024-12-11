@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block page_content %}
+<section id="details">
+  <div id="details-wrapper">
+    <h2>Author's Profile Details</h2>
+
+    {% if author %}
+      <!-- Profile Picture -->
+      <img
+        id="details-img"
+        src="{{ author.get_profile_picture }}"
+        alt="Profile Picture"
+      />
+
+      <!-- Author's Name -->
+      <p id="details-title">{{ author.first_name }} {{ author.last_name }}</p>
+
+      <!-- Total Published Posts -->
+      <p id="nutrition">Published Posts: {{ author.total_posts }}</p>
+
+      <!-- Number of Pets -->
+      <p>Pets Number: {{ author.pets_number }}</p>
+
+      <!-- Author's Info -->
+      {% if author.info %}
+        <p>{{ author.info }}</p>
+      {% endif %}
+
+      <!-- Last Updated Post -->
+      <p>
+        Last Updated Post:
+        <strong>
+          {{ author.last_updated_post_title }}
+        </strong>
+      </p>
+
+      <!-- Action Buttons -->
+      <div id="action-buttons">
+        <a href="{% url 'author_edit' %}" id="edit-btn">Edit</a>
+        <a href="{% url 'author_delete' %}" id="delete-btn">Delete</a>
+      </div>
+    {% else %}
+      <!-- Message for when no author exists -->
+      <p>No author profile found. Create one!</p>
+
+      <!-- Button to create a new author -->
+      <div id="action-buttons">
+        <a href="{% url 'author_create' %}" id="create-btn">Create Author Profile</a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

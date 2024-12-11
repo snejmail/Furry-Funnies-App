@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block page_content %}
+    
+    <section id="edit">
+      <div class="form">
+        <h2>Edit Post</h2>
+        <form class="edit-form" method="POST" action="{% url 'post_edit' post.id %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+          <button type="submit">Edit</button>
+        </form>
+      </div>
+    </section>
+
+{% endblock %}
